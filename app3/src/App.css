@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#home{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+ 
+ 
+}
+
+#home h1{
+  color: black;
+  font-size: 35px;
+}
+
+#but{
+  height: 38px;
+  width: 120px;
+  border: none;
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(170, 170, 170);
+  user-select: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
