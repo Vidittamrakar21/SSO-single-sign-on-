@@ -14,7 +14,7 @@ function App() {
 
   const navigateuser  = () =>{
       if(!login){
-        window.location.href = 'http://localhost:5173/sign?next=http://localhost:5174/'
+        window.location.href = 'https://ssoapp1.netlify.app/sign?next=https://ssoapp2.netlify.app/'
       }
       else{
         alert("You are already Signed In !")
@@ -23,7 +23,7 @@ function App() {
   }
 
   const checkvalidity = async (token: string) =>{
-    const isvalid = await (await axios.post('http://localhost:8080/api/finduser',{token: token })).data;
+    const isvalid = await (await axios.post('https://sso-server-three.vercel.app/api/finduser',{token: token })).data;
     console.log(isvalid);
             setumail(isvalid.data.email)
             setuname(isvalid.data.name)
@@ -32,16 +32,20 @@ function App() {
 
 const handlelogout = () =>{
   Cookies.remove('token')
-  window.location.reload()
+  window.location.href = 'https://ssoapp1.netlify.app/sign?next=https://ssoapp2.netlify.app/&logout=true'
+
+
 }
 
   useEffect(()=>{
     const token = Cookies.get('token')
     const urlSearchParams = new URLSearchParams(window.location.search);
     const mytoken = urlSearchParams.get('token');
+    const islogout = urlSearchParams.get('logout');
+    const redirecturl = urlSearchParams.get('next');
     if(mytoken){
             Cookies.set('token', mytoken, {expires: 3})
-            window.location.href = `http://localhost:5174/` 
+            window.location.href = `https://ssoapp2.netlify.app/` 
         
     }
 
@@ -49,6 +53,11 @@ const handlelogout = () =>{
       islogin(true)
       checkvalidity(token)
     }
+
+    if(islogout){
+      Cookies.remove('token')
+      window.location.href = `${redirecturl}?next=https://ssoapp1.netlify.app/&logout=true`
+  }
 
   },[])
 

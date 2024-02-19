@@ -30,3 +30,19 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
+#buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#tags{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: black;
+    margin-top: 25px;
+}

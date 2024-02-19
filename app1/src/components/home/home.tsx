@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Cookies  from "js-cookie"
-import { reload } from "firebase/auth"
+
 
 
 export default function Home(){
@@ -27,7 +27,7 @@ export default function Home(){
 
  
         const checkvalidity = async (token: string) =>{
-            const isvalid = await (await axios.post('http://localhost:8080/api/finduser',{token: token })).data;
+            const isvalid = await (await axios.post('https://sso-server-three.vercel.app/api/finduser',{token: token })).data;
             console.log(isvalid);
             setumail(isvalid.data.email)
             setuname(isvalid.data.name)
@@ -35,7 +35,7 @@ export default function Home(){
 
         const handlelogout = () =>{
             Cookies.remove('token')
-            window.location.reload()
+            window.location.href =  'https://ssoapp2.netlify.app/?next=https://ssoapp3.netlify.app/&logout=true'
         }
 
        useEffect(()=>{ 
