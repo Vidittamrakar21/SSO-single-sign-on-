@@ -1,3 +1,4 @@
+
 # SSO (Single-Sign-On)
 <br>
 
@@ -33,3 +34,5 @@ This repository contains a custom-built Single Sign-On (SSO) system using TypeSc
 <li>Logout: Securely logout from the SSO system when finished.</li>
 
 ### Made with ❤️ by Vidit Tamrakar
+
+![autodraw 2_20_2024](https://github.com/Vidittamrakar21/SSO-single-sign-on-/assets/114985411/234ccd59-f8d1-47ac-938a-605e06f37d70)
