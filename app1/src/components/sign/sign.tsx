@@ -3,7 +3,8 @@
 
 import './sign.css'
 
-import { useState,useEffect} from 'react';
+import { useState ,useEffect} from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 import axios from 'axios';
 import {auth} from "../../firebase"
 import {signInWithPopup , GoogleAuthProvider} from "firebase/auth"
@@ -19,6 +20,8 @@ import { useNavigate } from 'react-router-dom';
 function Signpage (){
 
     const [nexturl, seturl] = useState("");
+    const [loading, isloading] = useState(false);
+
     const router = useNavigate();
   
 
@@ -53,6 +56,7 @@ function Signpage (){
 
   
     const signwithgoogle= async ()=>{
+        isloading(true)
        const result  =  await signInWithPopup(auth, googleAuth);
        console.log(result);
        //@ts-ignore
@@ -73,10 +77,12 @@ function Signpage (){
                     if(nexturl){
      
                         window.location.href = `${nexturl}?token=${existuser.exists.token}` 
+                        isloading(false)
                     }
      
                     else{
                      router('/')
+                     isloading(false)
                     }
                  }
             }
@@ -88,10 +94,12 @@ function Signpage (){
                     if(nexturl){
      
                         window.location.href = `${nexturl}?token=${newuser.token}` 
+                        isloading(false)
                     }
      
                     else{
                      router('/')
+                     isloading(false)
                     }
                  }
             }
@@ -126,7 +134,7 @@ function Signpage (){
                
                 
                 <h5 id='terms'>I agree to the <span>Terms & Conditions</span> & <span>Privacy Policy</span></h5>
-
+                <ClipLoader color="#36d7b7" loading={loading}/>
             </div>
 
         </div>

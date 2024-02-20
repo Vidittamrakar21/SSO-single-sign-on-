@@ -34,8 +34,14 @@ export default function Home(){
         }
 
         const handlelogout = () =>{
+           const token  = Cookies.get('token')
+           if(token){
             Cookies.remove('token')
-            window.location.href =  'https://ssoapp2.netlify.app/?next=https://ssoapp3.netlify.app/&logout=true'
+            window.location.href =  'https://ssoapp2.netlify.app/check?next=https://ssoapp3.netlify.app/check&logout=true'
+           }
+           else{
+            alert("You are not Signed In !")
+           }
         }
 
        useEffect(()=>{ 
